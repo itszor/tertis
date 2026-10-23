@@ -1,0 +1,55 @@
+{
+ "name": "tertis",
+ "title": "Tertis (SICK, 1993)",
+ "platform": "acorn-archimedes",
+ "doc": "A recipe: how to turn a user's own copy of the game into a native executable. It holds no game data: the inputs are recognised by content (see $SS/tools/weave.py). One disc, !Tertis 2.05 (also the tertis.adf of github.com/merlinorg/trts, byte for byte).",
+ "inputs": {
+  "containers": {},
+  "formats": [
+   "adf",
+   "zip"
+  ]
+ },
+ "discs": [
+  {
+   "name": "disc",
+   "title": "Tertis: !Tertis (!RunImage, Data.TertisCode and Data.AllMods, compressed; the pictures and sprites)",
+   "known_images": [
+    "ae813a32f84d594bba6ecdebd16518db71aa212832b9e130b4ffe23038d7ecc9"
+   ],
+   "key_files": {
+    "!Tertis/!Run": "7eed62a24a0c2567cf03a3ddc870891ea186687671352742ad265fe0a9f053cd",
+    "!Tertis/!RunImage": "acf6f64b41d189c5c91f75247b63b6d7c6256467a65c80e5c5eab85b99aa0120",
+    "!Tertis/Memory": "861eda2816d395af2c021759eabe78d1aaafe5a820392ed6ac035654ea732504",
+    "!Tertis/!Sprites": "66b14b143e13b8bb7284bd0ba6355565266221a1973677776fc6f704e09c69c1",
+    "!Tertis/Data/TertisCode": "537214de3d8925ff7e77fcf9e3a6fd2eb2064f1a01026adf323d2f77b3fe4d21",
+    "!Tertis/Data/AllMods": "53b373265560a2e283715a69e0a77b588dcc3f9959ed1e4ff9edae45ac7b58bf",
+    "!Tertis/Data/BindleOne": "4041c4d13d95ce4eb6b4fb017324697d29bee194a1845b988cf8ef6a3deab3cd",
+    "!Tertis/Data/BindleTwo": "6aab1cd54045bebaf5b662fce9f9e68db6e17521113ff645965fb2b0d7e36761",
+    "!Tertis/Data/FootBall": "9f6c7919d14072adeed4d4fd58917c535d44ea66d4cc9ebca05a527c741c9fad",
+    "!Tertis/Data/Templates": "72b893368b1e70dc7e5426620e9d7113ed9e8c17f8d08feca87704014d8455ff"
+   },
+   "game_dirs": [
+    "!Tertis"
+   ]
+  }
+ ],
+ "build": [
+  "python3 -I \"$WEAVE\" extract . INPUTS",
+  "python3 -I tools/unpack.py",
+  "make -C recomp regen",
+  "make -C recomp"
+ ],
+ "output": "recomp/tertis",
+ "requires": {
+  "superspider": "~/stuff/superspider, or $SUPERSPIDER (dune build): analyse, gen, tools/weave.py, tools/arm2.py",
+  "libroger": "~/stuff/libroger, or make ROGER=... (OS_Module 10 in_memory modules, roger_program.entry)",
+  "host": [
+   "python3",
+   "ocaml + dune",
+   "gcc",
+   "SDL3 (pkg-config sdl3)"
+  ]
+ },
+ "run": "cd recomp && ./tertis"
+}

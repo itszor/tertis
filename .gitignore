@@ -1,0 +1,29 @@
+# Python / editors
+__pycache__/
+*.pyc
+*.swp
+
+# The original disc and everything made from it: build.sh (recipe.json)
+# remakes them from the user's own copy.
+*.zip
+*.adf
+extracted/
+game/
+unpacked/
+analysis/*.json
+
+# the game's source (github.com/merlinorg/trts), cloned for reference
+upstream/
+
+# Recompilation: generated C, objects, binary, run outputs
+recomp/gen*/
+recomp/*.o
+recomp/tertis
+recomp/*.events
+recomp/*.vdu
+recomp/*.screen
+recomp/*.regs
+recomp/*.bmp
+recomp/*.wav
+recomp/*.log
+recomp/savedata/
