@@ -13,7 +13,7 @@ MODS    := 1:8128 2:95ac 3:11030 4:131b4 5:14538 6:15df4 7:1c174 8:1eff8 9:20c7c
 GENMOD  := $(foreach m,$(MODS),$(wildcard genmod$(word 1,$(subst :, ,$(m)))/code*.c) \
              genmod$(word 1,$(subst :, ,$(m)))/entries.c)
 OBJ     := $(GEN:.c=.o) $(GENLOAD:.c=.o) $(GENMOD:.c=.o) game.o
-LIBS    := $(shell pkg-config --libs sdl3) -lm -lpthread
+LIBS    := $(shell pkg-config --libs sdl3) -ljpeg -lm -lpthread
 INC     := -I$(ROGER)/include
 
 tertis: $(OBJ) $(ROGER)/libroger.a
